@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
             if (showInfo == true) {
                 qDebug() << "Programm was created in educational purposes. \nMade by AES, 2023";
             }
-            //asdasdasdasdasd ABOBA
+            //asdasdasdasdasd ABOBAsadasdasd
 
     //return a.exec();
     return 0;
