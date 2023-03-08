@@ -7,55 +7,81 @@
 #include <QCommandLineOption>
 
 
+int catchFile(QString targetDir)
+{
+    qDebug() << targetDir;
+}
+
+int encodeFile()
+{
+    qDebug() << "Encoding complete!";
+}
+
+
+int decodeFile()
+{
+    qDebug() << "Decoding complete!";
+}
+
+int catchKey(QString keyValue)
+{
+    qDebug() << keyValue;
+}
+
+int printInfo()
+{
+    qDebug() << "Programm was created in educational purposes. \nMade by AES, 2023";
+}
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QCoreApplication::setApplicationName("Coder");
-    QCoreApplication::setApplicationVersion("1.0");
     QCommandLineParser parser;
     QCommandLineOption takeFileOption(QStringList() << "f", "<directory>", "directory");
-    QCommandLineOption doCoding("c", "Codding file");
+    QCommandLineOption doEncoding("c", "encodding file");
     QCommandLineOption doDecoding("d", "Decoding file");
     QCommandLineOption takeKey("k", "Taking key");
-    QCommandLineOption printInfo("h", "Printing info about author and programm");
+    QCommandLineOption info("h", "Printing info about author and programm");
     parser.addOption(takeFileOption);
-    parser.addOption(doCoding);
+    parser.addOption(doEncoding);
     parser.addOption(doDecoding);
     parser.addOption(takeKey);
-    parser.addOption(printInfo);
+    parser.addOption(info);
 
     parser.process(a);
     const QStringList args = parser.positionalArguments();
-    bool catchFile = parser.isSet(takeFileOption);
-    bool callCoder = parser.isSet(doCoding);
-    bool callDecoder = parser.isSet(doDecoding);
-    bool catchKey = parser.isSet(takeKey);
-    bool showInfo = parser.isSet(printInfo);
+    bool f = parser.isSet(takeFileOption);
+    bool c = parser.isSet(doEncoding);
+    bool d = parser.isSet(doDecoding);
+    bool k = parser.isSet(takeKey);
+    bool h = parser.isSet(info);
     //QString targetDir = parser.value(takeFileOption);
-    QFileInfo info1("/home/alevser/Изображения/whale.jpg");
-    qDebug() << info1.suffix();
+    //QFileInfo info1("/home/alevser/Изображения/whale.jpg");
+    //qDebug() << info1.suffix();
     //qDebug() << targetDir;
 
-            if (catchFile == true) {
+            if (f == true) {
                 QString targetDir = parser.value(takeFileOption);
-                qDebug() << targetDir;
-                qDebug() << "case f";
+                catchFile(targetDir);
+
             }
-            if (callCoder == true) {
-                qDebug() << "case c";
+            if (c == true) {
+                encodeFile();
+
             }
-            if (callDecoder == true) {
-                qDebug() << "case d";
+            if (d == true) {
+                decodeFile();
+
             }
-            if (catchKey == true) {
+            if (k == true) {
                 QString keyValue = parser.value(takeKey);
-                qDebug() << keyValue;
-                qDebug() << "case k";
+                catchKey(keyValue);
+
             }
-            if (showInfo == true) {
-                qDebug() << "Programm was created in educational purposes. \nMade by AES, 2023";
+            if (h == true) {
+                printInfo();
             }
-            //asdasdasdasdasd ABOBAsadasdasd
+
 
     //return a.exec();
     return 0;
